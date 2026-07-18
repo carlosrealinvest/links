@@ -35,26 +35,6 @@
     overflow-x: hidden;
   }
 
-  /* Trilha ascendente — motivo da seta da coroa Real Invest,
-     conectando a marca (topo) às ações (links) como uma trajetória. */
-  .trail {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 1px;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .trail svg {
-    position: absolute;
-    left: -1px;
-    top: 0;
-    height: 100%;
-    width: 2px;
-    overflow: visible;
-  }
-
   .page {
     width: 100%;
     max-width: 440px;
@@ -127,7 +107,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--grey);
+    color: var(--red-dark);
     margin: 30px 0 14px;
   }
 
@@ -199,23 +179,15 @@
     opacity: 0.35;
   }
 
-  /* CTA primária — único destaque sólido em vermelho */
-  .link-btn.primary {
-    background: var(--red);
-    border-color: var(--red);
-    color: #fff;
+  /* Materiais gratuitos — agrupados com borda vermelha à esquerda,
+     em vez de 3 botões sólidos competindo por atenção */
+  .link-btn.material {
+    border-left: 3px solid var(--red);
   }
-  .link-btn.primary .icon,
-  .link-btn.primary .link-sub {
-    color: #fce9ea;
+  .link-btn.material:hover,
+  .link-btn.material:focus-visible {
+    border-left-color: var(--red-dark);
   }
-  .link-btn.primary:hover,
-  .link-btn.primary:focus-visible {
-    background: var(--red-dark);
-    border-color: var(--red-dark);
-    box-shadow: 0 8px 20px rgba(176,29,44,0.28);
-  }
-  .link-btn.primary .chevron { opacity: 0.85; }
 
   footer {
     margin-top: 44px;
@@ -243,12 +215,6 @@
 </head>
 <body>
 
-<div class="trail" aria-hidden="true">
-  <svg viewBox="0 0 2 800" preserveAspectRatio="none">
-    <line x1="1" y1="0" x2="1" y2="800" stroke="#cb3e47" stroke-opacity="0.12" stroke-width="2"/>
-  </svg>
-</div>
-
 <div class="page">
 
   <header>
@@ -260,20 +226,48 @@
     <span class="handle">@carlosmaciel.realinvest</span>
   </header>
 
-  <div class="eyebrow">Materiais e canais</div>
+  <div class="eyebrow">Materiais gratuitos</div>
 
   <nav class="links">
 
-    <a class="link-btn primary" href="https://carlosmacielai.com.br/poupanca" target="_blank" rel="noopener">
+    <a class="link-btn material" href="https://carlosmacielai.com.br/ipca" target="_blank" rel="noopener">
       <span class="icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14M12 17l-5-5M12 17l5-5"/><path d="M5 21h14"/></svg>
       </span>
       <span class="link-text">
-        <div class="link-title">Baixe o material gratuito</div>
-        <div class="link-sub">Poupança x Renda Fixa · PDF educativo</div>
+        <div class="link-title">Tesouro IPCA+ 2035</div>
+        <div class="link-sub">PDF educativo gratuito</div>
       </span>
       <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
     </a>
+
+    <a class="link-btn material" href="https://carlosmacielai.com.br/difuturo" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14M12 17l-5-5M12 17l5-5"/><path d="M5 21h14"/></svg>
+      </span>
+      <span class="link-text">
+        <div class="link-title">DI Futuro e Renda Fixa</div>
+        <div class="link-sub">PDF educativo gratuito</div>
+      </span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <a class="link-btn material" href="https://carlosmacielai.com.br/poupanca" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14M12 17l-5-5M12 17l5-5"/><path d="M5 21h14"/></svg>
+      </span>
+      <span class="link-text">
+        <div class="link-title">Poupança x Renda Fixa</div>
+        <div class="link-sub">PDF educativo gratuito</div>
+      </span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+  </nav>
+
+  <div class="eyebrow">Canais</div>
+
+  <nav class="links">
 
     <a class="link-btn" href="https://instagram.com/carlosmaciel.realinvest" target="_blank" rel="noopener">
       <span class="icon" aria-hidden="true">
