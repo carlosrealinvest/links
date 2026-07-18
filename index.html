@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carlos Maciel · Real Invest | XP</title>
+<meta name="description" content="Assessor de Investimentos na Real Invest, escritório afiliado à XP Investimentos. Conteúdo educativo sobre renda fixa, investimentos e seguros.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #cb3e47;
+    --red-dark: #b01d2c;
+    --off-white: #f5f3ef;
+    --dark: #1a1a1a;
+    --line: #e4e9eb;
+    --grey: #6b6f70;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--off-white);
+    color: var(--dark);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Trilha ascendente — motivo da seta da coroa Real Invest,
+     conectando a marca (topo) às ações (links) como uma trajetória. */
+  .trail {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .trail svg {
+    position: absolute;
+    left: -1px;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    overflow: visible;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 440px;
+    padding: 56px 24px 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 34px;
+  }
+
+  .badge {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(26,26,26,0.04);
+  }
+  .badge img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1.15;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .role {
+    font-size: 13.5px;
+    color: var(--grey);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin-bottom: 2px;
+  }
+
+  .role .via {
+    color: var(--red-dark);
+    font-weight: 700;
+  }
+
+  .handle {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--dark);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 5px 14px;
+    letter-spacing: 0.02em;
+  }
+
+  .eyebrow {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--grey);
+    margin: 30px 0 14px;
+  }
+
+  nav.links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .link-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 15px 18px;
+    text-decoration: none;
+    color: var(--dark);
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .link-btn:hover,
+  .link-btn:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--red);
+    box-shadow: 0 6px 16px rgba(203,62,71,0.14);
+    outline: none;
+  }
+
+  .link-btn:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
+  }
+
+  .icon {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red-dark);
+  }
+  .icon svg { width: 100%; height: 100%; }
+
+  .link-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .link-title {
+    font-weight: 600;
+    font-size: 14.5px;
+    line-height: 1.3;
+  }
+
+  .link-sub {
+    font-size: 12px;
+    color: var(--grey);
+    margin-top: 1px;
+  }
+
+  .chevron {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    opacity: 0.35;
+  }
+
+  /* CTA primária — único destaque sólido em vermelho */
+  .link-btn.primary {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+  }
+  .link-btn.primary .icon,
+  .link-btn.primary .link-sub {
+    color: #fce9ea;
+  }
+  .link-btn.primary:hover,
+  .link-btn.primary:focus-visible {
+    background: var(--red-dark);
+    border-color: var(--red-dark);
+    box-shadow: 0 8px 20px rgba(176,29,44,0.28);
+  }
+  .link-btn.primary .chevron { opacity: 0.85; }
+
+  footer {
+    margin-top: 44px;
+    text-align: center;
+  }
+
+  .signature {
+    height: 22px;
+    opacity: 0.85;
+    margin-bottom: 16px;
+  }
+
+  .disclaimer {
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: var(--grey);
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="trail" aria-hidden="true">
+  <svg viewBox="0 0 2 800" preserveAspectRatio="none">
+    <line x1="1" y1="0" x2="1" y2="800" stroke="#cb3e47" stroke-opacity="0.12" stroke-width="2"/>
+  </svg>
+</div>
+
+<div class="page">
+
+  <header>
+    <div class="badge">
+      <img src="assets/ri-icon.png" alt="Real Invest">
+    </div>
+    <h1>Carlos Maciel</h1>
+    <div class="role">Sócio Fundador e Assessor <span class="via">· Real Invest | XP</span></div>
+    <span class="handle">@carlosmaciel.realinvest</span>
+  </header>
+
+  <div class="eyebrow">Materiais e canais</div>
+
+  <nav class="links">
+
+    <a class="link-btn primary" href="https://carlosmacielai.com.br/poupanca" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14M12 17l-5-5M12 17l5-5"/><path d="M5 21h14"/></svg>
+      </span>
+      <span class="link-text">
+        <div class="link-title">Baixe o material gratuito</div>
+        <div class="link-sub">Poupança x Renda Fixa · PDF educativo</div>
+      </span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <a class="link-btn" href="https://instagram.com/carlosmaciel.realinvest" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </span>
+      <span class="link-text">
+        <div class="link-title">Instagram</div>
+        <div class="link-sub">@carlosmaciel.realinvest</div>
+      </span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <a class="link-btn" href="https://www.threads.net/@carlosmaciel.realinvest" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c-4 0-6.5 2.7-6.5 6.3 0 2.2 1 3.9 2.8 5.1-1.6.8-2.3 2.1-2.3 3.6 0 2.4 2 4 5 4 4.2 0 6.5-2.8 6.7-7.2M9.5 10c1-1.5 4.5-1.8 5.8 0 1 1.4.6 3.6-1.3 4.4"/></svg>
+      </span>
+      <span class="link-text">
+        <div class="link-title">Threads</div>
+        <div class="link-sub">@carlosmaciel.realinvest</div>
+      </span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <a class="link-btn" href="https://wa.me/5579988677055" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8.3 19.7L3 21z"/><path d="M8.5 9.3c0 3.9 3.3 7.2 7.2 7.2"/></svg>
+      </span>
+      <span class="link-text">
+        <div class="link-title">Fale com o assessor</div>
+        <div class="link-sub">Análise de perfil via WhatsApp</div>
+      </span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <a class="link-btn" href="https://carlosmacielai.com.br" target="_blank" rel="noopener">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9s1.3-6.4 3.8-9z"/></svg>
+      </span>
+      <span class="link-text">
+        <div class="link-title">Site oficial</div>
+        <div class="link-sub">carlosmacielai.com.br</div>
+      </span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+  </nav>
+
+  <footer>
+    <img class="signature" src="assets/ri-xp-signature.png" alt="Real Invest · XP Investimentos">
+    <p class="disclaimer">
+      Carlos Maciel é Assessor de Investimentos na Real Invest, escritório autônomo afiliado à XP Investimentos. O investimento em valores mobiliários envolve riscos. Rentabilidade passada não garante resultados futuros. Consulte seu assessor.
+    </p>
+  </footer>
+
+</div>
+
+</body>
+</html>
